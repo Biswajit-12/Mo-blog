@@ -10,12 +10,12 @@ public class BlogController {
         return "blogs";
     }
 
-    @GetMapping({ "/", "/blog" })
+    @GetMapping({"/blog" })
     public String blog() {
         return "blog";
     }
 
-    @GetMapping({ "/", "/add-blog" })
+    @GetMapping({"/add-blog" })
     public String addBlog() {
         return "add-blog";
     }
