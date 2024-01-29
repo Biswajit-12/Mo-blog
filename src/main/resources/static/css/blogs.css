@@ -78,7 +78,6 @@ section {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-
 }
 
 .blog a {
@@ -100,4 +99,8 @@ section {
 .blogs a:hover {
     background-color: rgb(4, 80, 4);
     transform: scale(1.05);
+}
+
+.justify-left {
+    text-align: justify;
 }
