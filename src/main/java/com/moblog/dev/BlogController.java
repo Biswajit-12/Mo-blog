@@ -1,6 +1,5 @@
 package com.moblog.dev;
 
-import java.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,24 +7,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
-public class BlogController {
-    private final List<Blog> blogs;
+import lombok.RequiredArgsConstructor;
 
-    public BlogController() {
-        blogs = new ArrayList<>();
-    }
+@Controller
+@RequiredArgsConstructor
+public class BlogController {
+    private final BlogService blogService;
 
     @GetMapping({ "/", "/blogs" })
     public String blogs(Model model) {
+        var blogs = blogService.getBlogs();
         model.addAttribute("blogs", blogs);
         return "blogs";
     }
 
     @GetMapping({ "/blog" })
     public String blog(@RequestParam int id, Model model) {
-        var blog = blogs.get(id);
-        model.addAttribute("blog",blog);
+        var blog = blogService.getBlog(id);
+        model.addAttribute("blog", blog);
         return "blog";
     }
 
@@ -36,7 +35,7 @@ public class BlogController {
 
     @PostMapping({ "/add-blog" })
     public String addBlog(@ModelAttribute Blog blog) {
-        blogs.add(blog);
-        return "redirect:/blogs"; //redirect to blogs controller not html page 
+        blogService.addBlog(blog);
+        return "redirect:/blogs"; // redirect to blogs controller not html page
     }
 }
