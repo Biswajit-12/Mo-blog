@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.moblog.dev.service.BlogService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class BlogController {
@@ -20,6 +22,8 @@ public class BlogController {
     public String blogs(Model model) {
         var blogs = blogService.getBlogs();
         model.addAttribute("blogs", blogs);
+        log.info("Hello");
+        System.out.println("Hello World!");
         return "blogs";
     }
 
@@ -39,5 +43,11 @@ public class BlogController {
     public String addBlog(@ModelAttribute Blog blog) {
         blogService.addBlog(blog);
         return "redirect:/blogs"; // redirect to blogs controller not html page
+    }
+
+    @GetMapping({ "/delete-blog" })
+    public String deleteBlog(@RequestParam int id) {
+        blogService.deleteBlog(id);
+        return "redirect:/blogs";
     }
 }
