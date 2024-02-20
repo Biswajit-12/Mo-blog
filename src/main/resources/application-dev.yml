@@ -6,6 +6,11 @@ spring:
     url: ${url}
     username: root
     password: Biswajit2002
+    # hikari:
+    #   maximum-pool-size: 20
+  sql:
+    init:
+      mode: always
 
 # prefix: JT
 prefix: "JT:"
