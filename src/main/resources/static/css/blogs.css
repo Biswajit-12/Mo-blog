@@ -80,8 +80,10 @@ section {
     overflow: hidden;
 }
 
-.blog a {
+.blog div {
     grid-area: link;
+    display: flex;
+    gap: 1rem;
 }
 
 .explore {
@@ -102,9 +104,29 @@ section {
     background-color: rgb(4, 80, 4);
     transform: scale(1.05);
 }
+
+.update{
+    text-decoration: none;
+    display: inline-block;
+    color: #d1c0c0;
+    background-color: royalblue;
+    border-radius: 5px;
+    margin-top: 1rem;
+    padding: 0.3rem 0.6rem;
+    width: 68px;
+    height: 34px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.update:hover {
+    background-color: rgb(37, 53, 144);
+    transform: scale(1.05);
+}
+
 .delete{
     text-decoration: none;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     display: inline-block;
     color: #d1c0c0;
     background-color: red;

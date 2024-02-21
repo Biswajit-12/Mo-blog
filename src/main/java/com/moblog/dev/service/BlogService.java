@@ -13,4 +13,6 @@ public interface BlogService {
 
     void deleteBlog(int id);
 
+    void updateBlog(Blog blog);
+
 }

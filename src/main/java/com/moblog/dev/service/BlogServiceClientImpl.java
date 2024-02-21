@@ -49,8 +49,21 @@ public class BlogServiceClientImpl implements BlogService {
 
     @Override
     public void deleteBlog(int id) {
-        String sql = "DELETE FROM blog WHERE id=?";
-        jdbcClient.sql(sql).param(id).update();
+        String sql = "DELETE FROM blog WHERE id= :id";
+        jdbcClient.sql(sql).param("id",id).update();
     }
 
+    @Override
+    public void updateBlog(Blog blog) {
+        var id = blog.getId();
+        var heading = blog.getHeading();
+        var description = blog.getDescription();
+        
+        var sql = "UPDATE blog SET heading = :h , description = :d  WHERE id = :id";
+        jdbcClient.sql(sql)
+        .param("id",id)
+        .param("h",heading)
+        .param("d",description)
+        .update();
+    }
 }

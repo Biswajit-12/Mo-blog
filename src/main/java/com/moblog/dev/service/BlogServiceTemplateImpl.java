@@ -11,11 +11,12 @@ import org.springframework.stereotype.Service;
 import com.moblog.dev.model.Blog;
 
 import lombok.RequiredArgsConstructor;
+import lombok.var;
 
 @Service
 @Primary
 @RequiredArgsConstructor
-public class BlogServiceTemplateImpl implements  BlogService {
+public class BlogServiceTemplateImpl implements BlogService {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -55,7 +56,17 @@ public class BlogServiceTemplateImpl implements  BlogService {
     }
 
     public void deleteBlog(int id) {
-        String sql = "DELETE FROM blog WHERE id=?";
+        String sql = "DELETE FROM blog WHERE id= ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public void updateBlog(Blog blog) {
+        var id = blog.getId();
+        var heading = blog.getHeading();
+        var description = blog.getDescription();
+        
+        var sql = "UPDATE blog SET heading = ? , description =?  WHERE id = ?";
+        jdbcTemplate.update(sql, heading, description, id);
     }
 }
